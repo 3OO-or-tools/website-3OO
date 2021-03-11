@@ -5,13 +5,13 @@ import store from './store'
 import firebase from 'firebase/app'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAZFr3Ac72-m_vj-i234S-eF8ikbI8_j3k",
-    authDomain: "tools-or.firebaseapp.com",
-    databaseURL: "https://tools-or-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "tools-or",
-    storageBucket: "tools-or.appspot.com",
-    messagingSenderId: "982890396592",
-    appId: "1:982890396592:web:799ea6eae3637179d07475"
+    apiKey              : process.env.VUE_APP_FIREBASE_API_KEY,
+    authDomain          : process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+    databaseURL         : process.env.VUE_APP_FIREBASE_DATABASE_URL,
+    projectId           : process.env.VUE_APP_FIREBASE_PROJECT_ID,
+    storageBucket       : process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId   : process.env.VUE_APP_FIREBASE_MESSAGING_SEND_ID,
+    appId               : process.env.VUE_APP_FIREBASE_APP_ID
 }
 
 firebase.initializeApp(firebaseConfig)
