@@ -13,7 +13,7 @@ let router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-router.beforeEach(async (to) => {
+router.beforeEach((to) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   if (requiresAuth && !store.getters.isLoggedIn)
     return '/'

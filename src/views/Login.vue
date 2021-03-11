@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import firebase from 'firebase/app'
-import 'firebase/auth'
 import store from '../store'
 
 export default {
@@ -25,13 +23,6 @@ export default {
   methods: {
     login() {
       store.dispatch('login', this.user).then(() => this.$router.push('/'))
-    },
-    userLogin() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.user.email, this.user.password)
-        .then(() => this.$router.push('/'))
-        .catch((err) => alert(err.message))
     }
   }
 }

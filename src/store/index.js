@@ -25,8 +25,11 @@ export default createStore({
   },
   actions: {
     setUser({commit}) {
-      firebase.auth().onAuthStateChanged(user => {
-        commit('set_user', user)
+      return new Promise((resolve) => {
+        firebase.auth().onAuthStateChanged(user => {
+          commit('set_user', user)
+          resolve(user)
+        })
       })
     },
     login({commit}, user) {
