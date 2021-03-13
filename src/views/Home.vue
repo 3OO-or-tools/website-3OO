@@ -10,13 +10,13 @@
 
 <script>
 import HelloWorld from '@/components/HelloWorld.vue'
-import store from '../store'
+import user from '../store/user'
 
 export default {
   name: 'Home',
-  store : store,
+  user: user,
   computed: {
-    user() { return store.getters.user }
+    user() { return user.getters.user }
   },
   components: {
     HelloWorld

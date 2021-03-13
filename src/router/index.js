@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import store from '../store'
+import user from '../store/user'
 
 const routes = [
   { path: '/'         , name: 'Home'      , component: Home },
@@ -15,7 +15,7 @@ let router = createRouter({
 })
 router.beforeEach((to) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-  if (requiresAuth && !store.getters.isLoggedIn)
+  if (requiresAuth && !user.getters.isLoggedIn)
     return '/'
 })
 

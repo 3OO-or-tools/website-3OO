@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import store from '../store'
+import user from '../store/user'
 
 export default {
   data() {
@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     login() {
-      store.dispatch('login', this.user).then(() => this.$router.push('/'))
+      user.dispatch('login', this.user).then(() => this.$router.push('/'))
     }
   }
 }

@@ -27,19 +27,16 @@
 </template>
 
 <script>
-import store from './store'
+import user from './store/user'
 
 export default {
-  store : store,
+  user,
   computed: {
-    user() { return store.getters.user }
-  },
-  created() {
-    store.dispatch('setUser')
+    user() { return user.getters.user }
   },
   methods: {
     logout() {
-      store.dispatch('logout').then(() => this.$router.replace('/'))
+      user.dispatch('logout').then(() => this.$router.replace('/'))
     }
   }
 }
