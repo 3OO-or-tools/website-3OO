@@ -17,19 +17,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
-      - name: Test env
-        env:
-          BASE_URL: ${{ secrets.BASE_URL }}
-        run: |
-          echo "res = [$BASE_URL]"
-        
+
       - name: Install dependencies
         run: npm install
 
       - name: Build with env
         env:
-          BASE_URL: '/website-3OO/'
+          BASE_URL: ${{ secrets.BASE_URL }}
           VUE_APP_FIREBASE_API_KEY: ${{ secrets.VUE_APP_FIREBASE_API_KEY }}
           VUE_APP_FIREBASE_APP_ID: ${{ secrets.VUE_APP_FIREBASE_APP_ID }}
           VUE_APP_FIREBASE_AUTH_DOMAIN: ${{ secrets.VUE_APP_FIREBASE_AUTH_DOMAIN }}
