@@ -35,7 +35,6 @@ export default {
     findUser() {
       player.dispatch('get', this.player.name).then(() => {
         this.player = player.getters.player
-        console.log('inFindUser', this.player.planets)
       })
     }
   }

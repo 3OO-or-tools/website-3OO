@@ -18,7 +18,6 @@ const actions = {
             let player = firebase.database().ref('users').orderByChild('name').equalTo(playerName)
             player.on('value', p => {
                 let player = p.exists() ? Object.values(p.val())[0] : {}
-                console.log('Plyer out', player)
                 commit('set', player)
                 resolve(player)
             })
