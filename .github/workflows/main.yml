@@ -32,11 +32,5 @@ jobs:
           echo VUE_APP_FIREBASE_PROJECT_ID=${{ secrets.VUE_APP_FIREBASE_PROJECT_ID }} >> .env
           echo VUE_APP_FIREBASE_STORAGE_BUCKET=${{ secrets.VUE_APP_FIREBASE_STORAGE_BUCKET }} >> .env
 
-      - name : Build
-        run: BASE_URL=/website-3OO/ npm run build
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.0
-        with:
-          branch: gh-pages
-          folder: dist
+      - name : Build and push to Pages
+        run: sh deploy.sh
