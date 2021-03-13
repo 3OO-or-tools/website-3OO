@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard">
+  <div class="find-player">
       <input type="text" v-model="player.name" @change="findUser">
       <table class="table">
         <thead>

@@ -3,10 +3,10 @@ import Home from '../views/Home.vue'
 import user from '../store/user'
 
 const routes = [
-  { path: '/'         , name: 'Home'      , component: Home },
-  { path: '/login'    , name: 'Login'     , component: () => import('../views/Login.vue') },
-  { path: '/dashboard', name: 'Dashboard' , component: () => import('../views/Dashboard.vue'), meta : { requiresAuth : true }},
-  { path: '/about'    , name: 'About'     , component: () => import('../views/Dashboard.vue') }
+  { path: '/'           , name: 'Home'        , component: Home },
+  { path: '/login'      , name: 'Login'       , component: () => import('../views/Login.vue') },
+  { path: '/find-player', name: 'Find Player' , component: () => import('../views/Find-Player.vue'), meta : { requiresAuth : true }},
+  { path: '/about'      , name: 'About'       , component: () => import('../views/About.vue') }
 ]
 
 let router = createRouter({
