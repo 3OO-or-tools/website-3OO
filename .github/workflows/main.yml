@@ -31,6 +31,7 @@ jobs:
           echo VUE_APP_FIREBASE_MESSAGING_SEND_ID=${{ secrets.VUE_APP_FIREBASE_MESSAGING_SEND_ID }} >> .env
           echo VUE_APP_FIREBASE_PROJECT_ID=${{ secrets.VUE_APP_FIREBASE_PROJECT_ID }} >> .env
           echo VUE_APP_FIREBASE_STORAGE_BUCKET=${{ secrets.VUE_APP_FIREBASE_STORAGE_BUCKET }} >> .env
+          npm run build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.0
