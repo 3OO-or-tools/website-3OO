@@ -11,6 +11,7 @@ const routes = [
 
 let router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
+  linkActiveClass: 'active',
   routes
 })
 router.beforeEach((to) => {
