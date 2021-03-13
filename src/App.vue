@@ -8,7 +8,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item" v-if="user">
-            <router-link to="/dashboard" class="nav-link">Dashboard</router-link>
+            <router-link to="/find-player" class="nav-link">Find Player</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/about" class="nav-link">About</router-link>
