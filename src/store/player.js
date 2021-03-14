@@ -19,8 +19,8 @@ const actions = {
         await firebase.firestore().collection('players').doc(p.id).set(p)
         commit('set', p)
     },
-    get : async ({ commit }) => {
-        let player = await firebase.firestore().collection('players').where('pseudo', '==', '-Brindille-').get()
+    get : async ({ commit }, playerName) => {
+        let player = await firebase.firestore().collection('players').where('pseudo', '==', playerName).get()
         player.forEach(p => {
             commit('set', {...p.data(), id : p.id })
         })

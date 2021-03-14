@@ -47,7 +47,7 @@ import player from '../store/player'
 export default {
     data() {
         return {
-            player : { pseudo : '' },
+            player : { pseudo : '', planets : [] },
             newPlanet : { galaxy : '', system : '', position : '' }
         }
     },
@@ -58,9 +58,8 @@ export default {
             })
         },
         findUser() {
-            player.dispatch('get', this.player.name).then(() => {
+            player.dispatch('get', this.player.pseudo).then(() => {
                 this.player = player.getters.player
-                console.log(this.player)
             })
         }
     }
