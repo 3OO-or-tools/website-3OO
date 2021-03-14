@@ -33,7 +33,7 @@
                         <td><input type="number" min="1" max="100" v-model="newPlanet.system"></td>
                         <td><input type="number" min="1" max="10" v-model="newPlanet.position"></td>
                         <td></td>
-                        <td><input type="button" value="Add" class="btn btn-primary" v-on:click="addPlanet"></td>
+                        <td><input type="button" value="Add" class="btn btn-primary" v-on:click="addPlanet" v-if="player.id"></td>
                     </tr>
                 </tfoot>
             </table>
