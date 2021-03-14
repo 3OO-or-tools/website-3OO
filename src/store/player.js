@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import firebase from 'firebase/app'
-import 'firebase/database'
+import 'firebase/firestore'
 
 const state = {
     player : {}
@@ -13,14 +13,16 @@ const mutations = {
 }
 
 const actions = {
-    get : ({ commit }, playerName) => {
-        return new Promise( resolve => {
-            let player = firebase.database().ref('users').orderByChild('name').equalTo(playerName)
-            player.on('value', p => {
-                let player = p.exists() ? Object.values(p.val())[0] : {}
-                commit('set', player)
-                resolve(player)
-            })
+    addPlanet : async ({ state, commit }, planet) => {
+        let p = state.player
+        p.planets.push({...planet, date_updated : firebase.firestore.Timestamp.now()})
+        await firebase.firestore().collection('players').doc(p.id).set(p)
+        commit('set', p)
+    },
+    get : async ({ commit }) => {
+        let player = await firebase.firestore().collection('players').where('pseudo', '==', '-Brindille-').get()
+        player.forEach(p => {
+            commit('set', {...p.data(), id : p.id })
         })
     }
 }
