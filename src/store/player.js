@@ -13,6 +13,12 @@ const mutations = {
 }
 
 const actions = {
+    deletePlanet : async ({ state, commit }, i) => {
+        let p = state.player
+        p.planets.splice(i, 1)
+        await firebase.firestore().collection('players').doc(p.id).set(p)
+        commit('set', p)
+    },
     addPlanet : async ({ state, commit }, planet) => {
         let p = state.player
         p.planets.push({...planet, date_updated : firebase.firestore.Timestamp.now()})
