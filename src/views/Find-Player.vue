@@ -3,7 +3,7 @@
         <div class="row">
             <div class="input-group">
                 <span class="input-group-text">Pseudo</span>
-                <input type="text" class="form-control" v-model="player.name" @change="findUser">
+                <input type="text" class="form-control" v-model="player.pseudo" @change="findUser">
                 <button class="btn btn-outline-secondary" type="button" @click="findUser">Trouver</button>
             </div>
         </div>
@@ -15,16 +15,27 @@
                         <th>Système</th>
                         <th>Position</th>
                         <th>Date</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(planet, i) in player.planets" :key="`planet-${i}`">
-                        <td>{{ planet.g }}</td>
-                        <td>{{ planet.s }}</td>
-                        <td>{{ planet.p }}</td>
-                        <td>{{ (new Date(planet.date_updated)).toLocaleString() }}</td>
+                        <td>{{ planet.galaxy }}</td>
+                        <td>{{ planet.system }}</td>
+                        <td>{{ planet.position }}</td>
+                        <td>{{ (new Date(planet.date_updated.toDate())).toLocaleString() }}</td>
+                        <td></td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td><input type="number" min="1" max="100" v-model="newPlanet.galaxy"></td>
+                        <td><input type="number" min="1" max="100" v-model="newPlanet.system"></td>
+                        <td><input type="number" min="1" max="10" v-model="newPlanet.position"></td>
+                        <td></td>
+                        <td><input type="button" value="Add" class="btn btn-primary" v-on:click="addPlanet"></td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
@@ -34,17 +45,23 @@
 import player from '../store/player'
 
 export default {
-  data() {
-    return {
-      player : { name : ''}
+    data() {
+        return {
+            player : { pseudo : '', planets : [] },
+            newPlanet : { galaxy : '', system : '', position : '' }
+        }
+    },
+    methods: {
+        addPlanet() {
+            player.dispatch('addPlanet', this.newPlanet).then(() => {
+                this.newPlanet = { galaxy : '', system : '', position : '' }
+            })
+        },
+        findUser() {
+            player.dispatch('get', this.player.pseudo).then(() => {
+                this.player = player.getters.player
+            })
+        }
     }
-  },
-  methods: {
-    findUser() {
-      player.dispatch('get', this.player.name).then(() => {
-        this.player = player.getters.player
-      })
-    }
-  }
 }
 </script>
