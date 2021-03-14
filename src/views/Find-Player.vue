@@ -24,7 +24,7 @@
                         <td>{{ planet.system }}</td>
                         <td>{{ planet.position }}</td>
                         <td>{{ (new Date(planet.date_updated.toDate())).toLocaleString() }}</td>
-                        <td></td>
+                        <td><input type="button" class="btn btn-danger" value="X" v-on:click="deletePlanet(i)"></td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -33,7 +33,7 @@
                         <td><input type="number" min="1" max="100" v-model="newPlanet.system"></td>
                         <td><input type="number" min="1" max="10" v-model="newPlanet.position"></td>
                         <td></td>
-                        <td><input type="button" value="Add" class="btn btn-primary" v-on:click="addPlanet"></td>
+                        <td><input type="button" value="Add" class="btn btn-primary" v-on:click="addPlanet" v-if="player.id"></td>
                     </tr>
                 </tfoot>
             </table>
@@ -52,15 +52,16 @@ export default {
         }
     },
     methods: {
-        addPlanet() {
-            player.dispatch('addPlanet', this.newPlanet).then(() => {
-                this.newPlanet = { galaxy : '', system : '', position : '' }
-            })
+        async deletePlanet(i) {
+            await player.dispatch('deletePlanet', i)
         },
-        findUser() {
-            player.dispatch('get', this.player.pseudo).then(() => {
-                this.player = player.getters.player
-            })
+        async addPlanet() {
+            await player.dispatch('addPlanet', this.newPlanet)
+            this.newPlanet = { galaxy : '', system : '', position : '' }
+        },
+        async findUser() {
+            await player.dispatch('get', this.player.pseudo)
+            this.player = player.getters.player
         }
     }
 }
