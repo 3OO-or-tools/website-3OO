@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import user from '../store/user'
 
@@ -10,7 +10,7 @@ const routes = [
 ]
 
 let router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   linkActiveClass: 'active',
   routes
 })
